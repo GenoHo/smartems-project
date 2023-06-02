@@ -7,9 +7,9 @@
             <div class="menu_arrow" ></div>
           </div>
           <div class="mainMenuContainerLogo"></div>
-          <div class="mainMenuContainerMenu">
+          <div class="mainMenuContainerMenu" @click="mainMenuMove('/')">
             <div class="mainMenuContainerMenuItem fontMenu dashboard_font">
-            <div class='dashboard_btn_off'  id="dashboard_btn" ></div>
+            <div class='dashboard_btn_off'></div>
               메인
             </div>
           </div>
@@ -140,18 +140,19 @@ export default {
       state.ems2 = false
       state.select = 1
       // state.subList1 = 0
-      console.log('ems1 : ', state.ems1)
     }
 
     const pmsSubMenuOpen2 = () => {
       state.ems1 = false
       state.ems2 = true
       state.select = 2
-      console.log('ems2 :', state.ems2)
+    }
+
+    const mainMenuMove = (value) => {
+      router.push(value)
     }
 
     const subMenu = (idx) => {
-      console.log('subMenu click', idx)
       // state.subList1 = 0
       if (state.subList1 === idx) {
         state.subList1 = ''
@@ -161,9 +162,7 @@ export default {
     }
 
     const pageMove = (value, idx) => {
-      console.log('page move event:', idx)
       router.push(value)
-      console.log('router : ', value, router)
     }
 
     return {
@@ -171,7 +170,8 @@ export default {
       subMenu,
       pmsSubMenuOpen1,
       pmsSubMenuOpen2,
-      pageMove
+      pageMove,
+      mainMenuMove
     }
   }
 }
