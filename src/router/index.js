@@ -19,6 +19,11 @@ const routes = [
     path: '/setting',
     name: 'EmsSetting',
     component: () => import('../views/submenu/EmsSetting.vue')
+  },
+  {
+    path: '/spump',
+    name: 'Spump',
+    component: () => import('../views/submenu/smartems/Spump.vue')
   }
 ]
 

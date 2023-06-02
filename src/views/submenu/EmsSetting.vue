@@ -137,7 +137,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .divL{
     height: 94%;
     width: 100%;

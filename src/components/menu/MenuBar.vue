@@ -37,6 +37,7 @@
       </div>
     </div>
     <!-- 서브메뉴 -->
+  <div @mouseleave="mouseleave">  
     <div class="ems-subMenu" v-if="state.ems1">
       <div class="sub-log">
         <img src="@/assets/img/icon/auto.png" alt="" />
@@ -45,8 +46,6 @@
         </span>
       </div>
       <div class="sub-item" @click="subMenu(0)">
-        <!-- <span class="icon">
-        </span> -->
         <span :class="{ selectFont: state.subList1 === 0 }" >착수</span>
         <div class="sub-item-list" :class="{showList: state.subList1 === 0}">
           <div class="item" :class="{ showitem: state.subList1 === 0 }">
@@ -85,9 +84,12 @@
         </span>
       </div>
       <div class="sub-item" @click="subMenu(0)">
-        <span class="icon">
-        </span>
-        <span :class="{ selectFont: state.subList1 === 0 }" >222 {{state.subList1 }}</span>
+
+        <div class="subMenuContents">
+          <img src="@/assets/img/icon/reduce.png" style="margin-left:13px; margin-right: 12px; width: 20px; height: 18px; background-size: 100%;"/>
+        <span :class="{ selectFont: state.subList1 === 0 }" >에너지 절감 관리{{state.subList1 }}</span>
+        </div>
+
         <div class="sub-item-list" :class="{showList: state.subList1 === 0}">
           <div class="item" :class="{ showitem: state.subList1 === 0 }">
             <div class="circle"></div>
@@ -100,21 +102,23 @@
         </div>
       </div>
       <div class="sub-item" @click="subMenu(1)">
-        <span class="icon">
-        </span>
-        <span :class="{ selectFont: state.subList1 === 1 }" >약품 {{state.subList1 }}</span>
+        <div class="subMenuContents">
+          <img src="@/assets/img/icon/setting.png" style="margin-left:13px; margin-right: 12px; width: 20px; height: 18px; background-size: 100%;"/>
+        <span :class="{ selectFont: state.subList1 === 1 }" >설정{{state.subList1 }}</span>
+        </div>
         <div class="sub-item-list" :class="{showList: state.subList1 === 1}">
-          <div class="item" :class="{ showitem: state.subList1 === 1 }">
-            <div class="circle"></div>
-            에너지 절감 관리
-          </div>
           <div class="item" :class="{ showitem: state.subList1 === 1 }" @click="pageMove('setting', 1)">
             <div class="circle"></div>
-            설정
+            태그 정보
+          </div>
+          <div class="item" :class="{ showitem: state.subList1 === 1 }" @click="pageMove('spump', 1)">
+            <div class="circle"></div>
+            송수펌프 운영
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -161,6 +165,13 @@ export default {
       }
     }
 
+    const mouseleave = () => {
+       state.menu = false,
+       state.ems1 = false,
+       state.ems2 = false,
+       state.subList = '';
+    }
+
     const pageMove = (value, idx) => {
       router.push(value)
     }
@@ -171,7 +182,8 @@ export default {
       pmsSubMenuOpen1,
       pmsSubMenuOpen2,
       pageMove,
-      mainMenuMove
+      mainMenuMove,
+      mouseleave
     }
   }
 }
@@ -366,5 +378,26 @@ export default {
   font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1rem;
+}
+.subMenuContents {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    height: 48px;
+    cursor: pointer;
+    transition: all 0.3s;
+    align-items: center;
+    flex-direction: row;
+    color: #fff;
+}
+
+.sub-log {
+    cursor: pointer;
+    padding-top: 1px;
+    padding-left: 10px;
+    width: 100%;
+    height: 63px;
+    display: inline-flex;
+    align-items: center;
 }
 </style>
