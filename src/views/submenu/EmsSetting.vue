@@ -86,10 +86,11 @@ export default {
 
     computedList() {
       let list = []
-
       for(let item of this.GE_POST_LIST) {
         if(item.author == this.storeUserName) {
           list.push(item)
+        } else {
+          list.push(' '); // 입력한 값과 일치하는 값이 없을 때 빈 값.
         }
       }
 
@@ -125,12 +126,15 @@ export default {
     ]),
     // 버튼을 클릭하면 수행됩니다.
     searchName() {
-      console.log('searchName')
-      const payload = {
-        userName: this.searchInfo.Fac_nm
+      if(this.searchInfo.Fac_nm) {
+        const payload = {
+          userName: this.searchInfo.Fac_nm
+        }
+        // store의 userName을 변경합니다.
+        this.AC_USER_NAME(payload)
+      } else {
+        alert('입력 값이 없습니다.')
       }
-      // store의 userName을 변경합니다.
-      this.AC_USER_NAME(payload)
     }
   }
 
